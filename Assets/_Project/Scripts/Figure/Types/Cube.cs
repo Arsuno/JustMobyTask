@@ -52,26 +52,17 @@ namespace _Project.Scripts.Figure.Types
         public void OnPointerDown(PointerEventData eventData)
         {
             Vector3 worldPosition = _rectTransform.position / _scaleFactor;
-            Debug.Log("First: " + worldPosition);
-            
-            Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(_rectTransformParent, eventData.position, eventData.pressEventCamera, out localPoint);
-            Debug.Log("LocalPoint: " + localPoint);
-            
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRectTransform, eventData.position, eventData.pressEventCamera, out localPoint);
-            Debug.Log("LocalPoint: " + localPoint);
-            _rectTransform.anchoredPosition = localPoint;
             
             if (!_isDublicate)
             {
-                //_clone = _factory.CreateFigureDuplicate(gameObject);
-                //_clone.RectTransform.SetParent(_canvasRectTransform, false);
-                //_clone.RectTransform.position = worldPosition;
+                _clone = _factory.CreateFigureDuplicate(gameObject);
+                _clone.RectTransform.SetParent(_canvasRectTransform, false);
+                _clone.RectTransform.position = worldPosition;
             }
             else
             {
-                //_rectTransform.SetParent(_canvasRectTransform, false);
-                //_rectTransform.position = worldPosition;
+                _rectTransform.SetParent(_canvasRectTransform, false);
+                _rectTransform.position = worldPosition;
             }
         }
         
